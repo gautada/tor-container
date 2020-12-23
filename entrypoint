@@ -1,0 +1,15 @@
+#!/bin/sh
+
+#  entrypoint.sh
+#  TOR Service
+#
+#  Created by Adam Gautier on 6/24/18.
+#  Copyright © 2018 Adam Gautier. All rights reserved.
+#
+# Default docker command/entrypoint script
+#
+# This launches the tor service
+if [ ! -f /tmp/foo.txt ]; then
+    /usr/local/bin/setup
+fi
+/usr/bin/tor

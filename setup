@@ -1,0 +1,28 @@
+#!/bin/sh
+
+#  credentials
+#  Dynamically generate credentials and copy the new torrc file.
+#
+#  Created by Adam Gautier on 11/03/18.
+#  Copyright © 2018 Adam Gautier. All rights reserved.
+#
+#
+cp /etc/tor/torrc.tpl /etc/tor/torrc.tmp
+
+SR="s/__SOCKS_5_PROXY_USERNAME__/$(pwgen 20 1)/g"
+/bin/sed -i $SR /etc/tor/torrc.tmp
+
+SR="s/__SOCKS_5_PROXY_PASSWORD__/$(pwgen 40 1)/g"
+/bin/sed -i $SR /etc/tor/torrc.tmp
+
+PWD=$(pwgen 50 1)
+echo $PWD > /etc/tor/torrc.secret
+HCP=$(/usr/bin/tor --quiet --hash-password $PWD)
+SR="s/__HASHED_CONTROL_PASSWORD__/$HCP/g"
+/bin/sed -i $SR /etc/tor/torrc.tmp
+
+mv /etc/tor/torrc.tmp /etc/tor/torrc
+
+/usr/local/bin/credentials
+
+
