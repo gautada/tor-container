@@ -12,11 +12,11 @@ steps:
     DOCKER_PASSWORD:
       from_secret: password.docker.io
     ALPINE_TAG: 3.14.1
-    OCI_VERSION: 6.2.5
+    OCI_VERSION: v1.0.0
   commands:
   - buildah login --username=$DOCKER_USERNAME --password=$DOCKER_PASSWORD docker.io
-  - buildah bud --build-arg ALPINE_TAG=$ALPINE_TAG --build-arg BRANCH=$OCI_VERSION --file Containerfile --tag localhost/redis:dev
-  - buildah push localhost/redis:dev docker://docker.io/gautada/redis:v$OCI_VERSION
+  - buildah bud --build-arg ALPINE_TAG=$ALPINE_TAG --build-arg BRANCH=$OCI_VERSION --file Containerfile --tag localhost/tor:dev
+  - buildah push localhost/tor:dev docker://docker.io/gautada/tor:$OCI_VERSION
 
 trigger:
   branch:
