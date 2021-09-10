@@ -1,6 +1,6 @@
-# Tor
+# tor
 
-A service that provides [The Onion Router](https://www.torproject.org) (Tor).  This service provides an exposable Tor router that is password protected so it could technically be used anywhere in the world.
+[Tor]((https://www.torproject.org) provides The Onion Router.  This service provides an exposable Tor router that is password protected so it could technically be used anywhere in the world.
 
 Tor is free software and an open network that helps you defend against traffic analysis, a form of network surveillance that threatens personal freedom and privacy, confidential business activities and relationships, and state security.
 
@@ -17,7 +17,7 @@ To expose the Tor router use the Dynamic DNS Client (dydns).
 The standard docker build is used to build the tor.
 
 ```
-$ docker build --tag tor:build .
+$ docker build --build-arg ALPINE_TAG=3.14.2 --file Containerfile -tag tor:dev .
 ```
 
 ## Run
